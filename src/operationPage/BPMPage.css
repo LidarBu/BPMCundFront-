@@ -1,0 +1,143 @@
+@keyframes red_pulse {
+  0% {
+    background-color: rgb(156, 45, 45);
+    opacity: 100%;
+    box-shadow: 0 0 0px #c50707, inset 0 0 0px #c50707;
+  }
+  50% {
+    background-color: red;
+    opacity: 100%;
+    box-shadow: 0 0 8px #ff0101, inset 0 0 16px #ff0404;
+  }
+  100% {
+    background-color: rgb(156, 45, 45);
+    opacity: 100%;
+    box-shadow: 0 0 0px #c50707, inset 0 0 0px #c50707;
+  }
+}
+@keyframes green_pulse {
+  0% {
+    background-color: rgb(69, 173, 48);
+    opacity: 100%;
+    box-shadow: 0 0 0px #3dff02, inset 0 0 0px #3dff02;
+  }
+  50% {
+    background-color: rgb(9, 255, 0);
+    opacity: 100%;
+    box-shadow: 0 0 8px #3dff02, inset 0 0 16px #3dff02;
+  }
+  100% {
+    background-color: rgb(69, 173, 48);
+    opacity: 100%;
+    box-shadow: 0 0 0px #3dff02, inset 0 0 0px #3dff02;
+  }
+}
+.red_state {
+  margin-left: 10px;
+  margin-right: 2px;
+  display: inline-block;
+  align-items: flex;
+  width: 15px;
+  height: 15px;
+  border-radius: 50px;
+  box-shadow: 0 0 8px #c50707, inset 0 0 8px #c50707;
+  animation: red_pulse 3s linear 1s infinite;
+}
+.green_state {
+  margin-left: 10px;
+  margin-right: 2px;
+  display: inline-block;
+  align-items: flex;
+  width: 15px;
+  height: 15px;
+  border-radius: 50px;
+  box-shadow: 0 0 8px #3dff02, inset 0 0 8px #3dff02;
+  animation: green_pulse 3s linear 1s infinite;
+}
+
+div:before.green_state {
+  margin: 5px;
+  background: greenyellow;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.inline {
+  
+  color: white;
+  display: inline;
+  margin: 5px;
+  font-family: "sans-serif", sans-serif;
+  font-weight: 300;
+}
+
+@keyframes anvil {
+  0% {
+    transform: scale(1) translateY(0px);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+  }
+  1% {
+    transform: scale(0.96) translateY(10px);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+  }
+  100% {
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+    box-shadow: 0 0 500px rgba(241, 241, 241, 0);
+  }
+}
+.popup-content {
+  animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+}
+.popup-arrow {
+  color: rgb(255, 255, 255);
+}
+[role="tooltip"].popup-content {
+  width: 200px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+}
+
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+[data-popup="tooltip"].popup-overlay {
+  background: transparent;
+}
+
+.button_a {
+  background-color: transparent;
+  display: inline-block;
+  padding: 0.3em 1em;
+  margin: 0 0.5em 0.6em 0;
+  border: 0.1em solid rgb(255, 255, 255);
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #a8a5a5;
+  text-shadow: 0 0.04em 0.04em rgba(255, 255, 255, 0.253);
+  text-align: center;
+  transition: all 0.2s;
+  box-shadow: 0 1 1 rgba(241, 241, 241, 0);
+}
+
+.button_a:hover {
+  color: black;
+  background-color: rgb(255, 255, 255);
+}
+.logs {
+  color: white;
+  margin: 5px;
+  font-family: "sans-serif", sans-serif;
+  font-weight: 300;
+}
+
+div .container{
+padding-top: 15px;
+
+}
