@@ -41,7 +41,7 @@
   height: 15px;
   border-radius: 50px;
   box-shadow: 0 0 8px #c50707, inset 0 0 8px #c50707;
-  animation: red_pulse 3s linear 1s infinite;
+  /* animation: red_pulse 3s linear 1s infinite; */
 }
 .green_state {
   margin-left: 10px;
@@ -52,7 +52,7 @@
   height: 15px;
   border-radius: 50px;
   box-shadow: 0 0 8px #3dff02, inset 0 0 8px #3dff02;
-  animation: green_pulse 3s linear 1s infinite;
+  /* animation: green_pulse 3s linear 1s infinite; */
 }
 
 

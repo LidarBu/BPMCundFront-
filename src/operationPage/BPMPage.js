@@ -22,6 +22,45 @@ async function FetchLog(bpm) {
   return response;
 }
 
+async function StopBpm(bpm) {
+  var url = new URL(conf.BACKEND_SERVER + "/stopbpm");
+  var params = { bpm: bpm };
+  url.search = new URLSearchParams(params).toString();
+  console.log("stop bpm func:" + bpm);
+  console.log(url.toString());
+  const response = await fetch(url)
+    .then((res) => {
+      console.log(res);
+      return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
+      return { data: [], error: err };
+    });
+
+  return response;
+}
+
+async function StartBpm(bpm) {
+  var url = new URL(conf.BACKEND_SERVER + "/stopbpm");
+  var params = { bpm: bpm };
+  url.search = new URLSearchParams(params).toString();
+  console.log("stop bpm func:" + bpm);
+  console.log(url.toString());
+  const response = await fetch(url)
+    .then((res) => {
+      console.log(res);
+      return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
+      return { data: [], error: err };
+    });
+
+  return response;
+}
+
+
 function OpenPopup(message, func1, func2) {
   console.log("message pop " + message);
   var state = true;
@@ -35,7 +74,7 @@ function OpenPopup(message, func1, func2) {
         func2(false);
       }}
     >
-      <span> messagegee mf </span>
+      <span> {message} </span>
     </Popup>
   );
 }
@@ -82,15 +121,23 @@ const LogButton = (props) => {
 
 const StartButton = (props) => {
   const [state, setState] = React.useState(false);
+
+  const onClickHandler = () => {
+    StartBpm(props.value)
+      .then((res) => res.data)
+      .then((res) => {
+        setData(res);
+      })
+      .then(setState(true));
+  };
+
+
   return (
     <>
       <button
         id={props.value}
         className="button_a button_b"
-        onClick={() => {
-          console.log("restart clicked");
-          setState(!state);
-        }}
+        onClick={() => onClickHandler()}
       >
         Start
       </button>
@@ -101,15 +148,21 @@ const StartButton = (props) => {
 
 const StopButton = (props) => {
   const [state, setState] = React.useState(false);
+  const onClickHandler = () => {
+    StopBpm(props.value)
+      .then((res) => res.data)
+      .then((res) => {
+        setData(res);
+      })
+      .then(setState(true));
+  };
+
   return (
     <>
       <button
         id={props.value}
         className="button_a button_b"
-        onClick={() => {
-          console.log("restart clicked");
-          setState(!state);
-        }}
+        onClick={() => onClickHandler()}
       >
         Stop
       </button>
