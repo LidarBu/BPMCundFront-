@@ -130,16 +130,25 @@ function BPMQuery(props) {
   };
 
   return (
-    <div>
-      <div className={stateClass(state)} />
-      <p className="inline">{name}</p>
-      <p className="inline">Port: {port}</p>
-      <p className="inline">Desc: {description}</p>
+    // <div>
+    //   <div className={stateClass(state)} />
+    //   <p className="inline">{name}</p>
+    //   <p className="inline">Port: {port}</p>
+    //   <p className="inline">Desc: {description}</p>
 
-      <LogButton value={trimedName} className="inline" />
-      <StartButton value={trimedName} className="inline" />
-      <StopButton value={trimedName} className="inline" />
-    </div>
+    //   <LogButton value={trimedName} className="inline" />
+    //   <StartButton value={trimedName} className="inline" />
+    //   <StopButton value={trimedName} className="inline" />
+    // </div>
+    <tr>
+      <td className={stateClass(state)} />
+      <td className="inline">{name}</td>
+      <td className="inline">Port: {port}</td>
+      <td className="inline">Desc: {description}</td>
+      <td><LogButton value={trimedName} className="inline" /></td>
+      <td><StartButton value={trimedName} className="inline" /></td>
+      <td><StopButton value={trimedName} className="inline" /></td>
+    </tr>
   );
 }
 
@@ -161,11 +170,11 @@ function BPMPage() {
   }, []);
 
   return (
-    <div class="container">
+    <table class="container">
       {bpms.map((elem) => {
         return <BPMQuery key={elem.name} bpm={elem}></BPMQuery>;
       })}
-    </div>
+    </table>
   );
 }
 
