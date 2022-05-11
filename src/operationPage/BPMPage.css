@@ -141,3 +141,11 @@ div .container{
 padding-top: 15px;
 
 }
+
+.bpm-div{ 
+  margin: 2px;
+  border-radius: 2px;
+  border: #a8a5a5;
+  box-shadow: 0 1 1 rgba(241, 241, 241, 0);
+
+}

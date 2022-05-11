@@ -69,17 +69,18 @@ const LogButton = (props) => {
         onClose={() => setState(false)}
       >
         <div className="popup-content">
-          {data.map((elem) => {
+          {/* {data.map((elem) => {
             console.log(elem);
             return <p className="logs">{elem.query}</p>;
-          })}
+          })} */}
+          {data}
         </div>
       </Popup>
     </>
   );
 };
 
-const RestartButton = (props) => {
+const StartButton = (props) => {
   const [state, setState] = React.useState(false);
   return (
     <>
@@ -91,9 +92,28 @@ const RestartButton = (props) => {
           setState(!state);
         }}
       >
-        Restart
+        Start
       </button>
-      {state ? OpenPopup("Restart", setState) : null}
+      {state ? OpenPopup("Start", setState) : null}
+    </>
+  );
+};
+
+const StopButton = (props) => {
+  const [state, setState] = React.useState(false);
+  return (
+    <>
+      <button
+        id={props.value}
+        className="button_a button_b"
+        onClick={() => {
+          console.log("restart clicked");
+          setState(!state);
+        }}
+      >
+        Stop
+      </button>
+      {state ? OpenPopup("Stop", setState) : null}
     </>
   );
 };
@@ -102,7 +122,7 @@ function BPMQuery(props) {
   const { name, port, description, state } = props.bpm;
   const trimedName = name.substring(3, 6); //trim the bpm num only.
   const stateClass = (state) => {
-    if (state === "true") {
+    if (state.trim() === "true") {
       return "green_state";
     } else {
       return "red_state";
@@ -117,7 +137,8 @@ function BPMQuery(props) {
       <p className="inline">Desc: {description}</p>
 
       <LogButton value={trimedName} className="inline" />
-      <RestartButton value={trimedName} className="inline" />
+      <StartButton value={trimedName} className="inline" />
+      <StopButton value={trimedName} className="inline" />
     </div>
   );
 }
