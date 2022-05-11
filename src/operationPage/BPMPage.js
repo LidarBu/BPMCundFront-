@@ -73,7 +73,7 @@ const LogButton = (props) => {
             console.log(elem);
             return <p className="logs">{elem.query}</p>;
           })} */}
-          {data}
+        <p className="logs">{data}</p>  
         </div>
       </Popup>
     </>
