@@ -1,5 +1,5 @@
 {
-  "BACKEND_SERVER": "http://eip-tstpp01:9090",
+  "BACKEND_SERVER": "http://eip-tstapp01:9090/app",
   "ENVIRONMENT": "dev"
 }
 
