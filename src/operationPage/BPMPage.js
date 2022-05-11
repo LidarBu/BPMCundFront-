@@ -170,7 +170,7 @@ const StopButton = (props) => {
     </>
   );
 };
-
+//bpm line q
 function BPMQuery(props) {
   const { name, port, description, state } = props.bpm;
   const trimedName = name.substring(3, 6); //trim the bpm num only.
