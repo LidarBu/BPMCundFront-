@@ -24,11 +24,13 @@ async function FetchLog(bpm) {
 
 async function StopBpm(bpm) {
   var url = new URL(conf.BACKEND_SERVER + "/stopbpm");
+  const requestOptions = {
+    method: 'PUT'}
   var params = { bpm: bpm };
   url.search = new URLSearchParams(params).toString();
   console.log("stop bpm func:" + bpm);
   console.log(url.toString());
-  const response = await fetch(url)
+  const response = await fetch(url,requestOptions)
     .then((res) => {
       console.log(res);
       return res.json();
@@ -44,10 +46,12 @@ async function StopBpm(bpm) {
 async function StartBpm(bpm) {
   var url = new URL(conf.BACKEND_SERVER + "/stopbpm");
   var params = { bpm: bpm };
+  const requestOptions = {
+    method: 'PUT'}
   url.search = new URLSearchParams(params).toString();
   console.log("stop bpm func:" + bpm);
   console.log(url.toString());
-  const response = await fetch(url)
+  const response = await fetch(url,requestOptions)
     .then((res) => {
       console.log(res);
       return res.json();
