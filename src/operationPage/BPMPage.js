@@ -25,12 +25,13 @@ async function FetchLog(bpm) {
 async function StopBpm(bpm) {
   var url = new URL(conf.BACKEND_SERVER + "/stopbpm");
   const requestOptions = {
-    method: 'PUT'}
+    method: "PUT",
+  };
   var params = { bpm: bpm };
   url.search = new URLSearchParams(params).toString();
   console.log("stop bpm func:" + bpm);
   console.log(url.toString());
-  const response = await fetch(url,requestOptions)
+  const response = await fetch(url, requestOptions)
     .then((res) => {
       console.log(res);
       return res.json();
@@ -44,14 +45,15 @@ async function StopBpm(bpm) {
 }
 
 async function StartBpm(bpm) {
-  var url = new URL(conf.BACKEND_SERVER + "/stopbpm");
+  var url = new URL(conf.BACKEND_SERVER + "/startbpm");
   var params = { bpm: bpm };
   const requestOptions = {
-    method: 'PUT'}
+    method: "PUT",
+  };
   url.search = new URLSearchParams(params).toString();
   console.log("stop bpm func:" + bpm);
   console.log(url.toString());
-  const response = await fetch(url,requestOptions)
+  const response = await fetch(url, requestOptions)
     .then((res) => {
       console.log(res);
       return res.json();
@@ -63,7 +65,6 @@ async function StartBpm(bpm) {
 
   return response;
 }
-
 
 function OpenPopup(message, func1, func2) {
   console.log("message pop " + message);
@@ -116,7 +117,7 @@ const LogButton = (props) => {
             console.log(elem);
             return <p className="logs">{elem.query}</p>;
           })} */}
-        <p className="logs">{data}</p>  
+          <p className="logs">{data}</p>
         </div>
       </Popup>
     </>
@@ -125,7 +126,7 @@ const LogButton = (props) => {
 
 const StartButton = (props) => {
   const [state, setState] = React.useState(false);
-
+  const [data, setData] = React.useState([[]]);
   const onClickHandler = () => {
     StartBpm(props.value)
       .then((res) => res.data)
@@ -134,7 +135,6 @@ const StartButton = (props) => {
       })
       .then(setState(true));
   };
-
 
   return (
     <>
@@ -145,13 +145,14 @@ const StartButton = (props) => {
       >
         Start
       </button>
-      {state ? OpenPopup("Start", setState) : null}
+      {state ? OpenPopup(data, setState) : null}
     </>
   );
 };
 
 const StopButton = (props) => {
   const [state, setState] = React.useState(false);
+  const [data, setData] = React.useState([[]]);
   const onClickHandler = () => {
     StopBpm(props.value)
       .then((res) => res.data)
@@ -170,7 +171,7 @@ const StopButton = (props) => {
       >
         Stop
       </button>
-      {state ? OpenPopup("Stop", setState) : null}
+      {state ? OpenPopup(data, setState) : null}
     </>
   );
 };
@@ -202,9 +203,15 @@ function BPMQuery(props) {
       <td className="inline">{name}</td>
       <td className="inline">Port: {port}</td>
       <td className="inline">Desc: {description}</td>
-      <td><LogButton value={trimedName} className="inline" /></td>
-      <td><StartButton value={trimedName} className="inline" /></td>
-      <td><StopButton value={trimedName} className="inline" /></td>
+      <td>
+        <LogButton value={trimedName} className="inline" />
+      </td>
+      <td>
+        <StartButton value={trimedName} className="inline" />
+      </td>
+      <td>
+        <StopButton value={trimedName} className="inline" />
+      </td>
     </tr>
   );
 }
