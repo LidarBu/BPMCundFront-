@@ -4,7 +4,7 @@ import "./BPMPage.css";
 import Popup from "reactjs-popup";
 
 async function FetchLog(bpm) {
-  var url = new URL(conf.BACKEND_SERVER + "/getlogtest");
+  var url = new URL(conf.BACKEND_SERVER + "/getlogs");
   var params = { bpm: bpm };
   url.search = new URLSearchParams(params).toString();
   console.log("fetch func:" + bpm);
@@ -102,7 +102,7 @@ function BPMQuery(props) {
   const { name, port, description, state } = props.bpm;
   const trimedName = name.substring(3, 6); //trim the bpm num only.
   const stateClass = (state) => {
-    if (state === "WORKING") {
+    if (state === "true") {
       return "green_state";
     } else {
       return "red_state";
@@ -126,7 +126,7 @@ function BPMPage() {
   const [bpms, setObj] = React.useState([]);
 
   React.useEffect(() => {
-    fetch(conf.BACKEND_SERVER + "/gettest")
+    fetch(conf.BACKEND_SERVER + "/getall")
       .then((response) => {
         response.json().then((res) => {
           console.log(res);
