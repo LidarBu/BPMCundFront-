@@ -41,7 +41,7 @@
   height: 15px;
   border-radius: 50px;
   box-shadow: 0 0 8px #c50707, inset 0 0 8px #c50707;
-  /* animation: red_pulse 3s linear 1s infinite; */
+  animation: red_pulse 3s linear 1s infinite;
 }
 .green_state {
   margin-left: 10px;
@@ -140,5 +140,13 @@ padding-top: 15px;
   border-radius: 2px;
   border: #a8a5a5;
   box-shadow: 0 1 1 rgba(241, 241, 241, 0);
+
+}
+
+
+.spinner{
+  background-color: rgb(9, 133, 243);
+
+
 
 }

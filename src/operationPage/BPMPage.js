@@ -2,6 +2,8 @@ import conf from "../Assests/Configuration.json";
 import React, { useState } from "react";
 import "./BPMPage.css";
 import Popup from "reactjs-popup";
+import { ClipLoader, FadeLoader, ClockLoader } from "react-spinners";
+import { css } from "@emotion/react";
 
 async function FetchLog(bpm) {
   var url = new URL(conf.BACKEND_SERVER + "/getlogs");
@@ -218,27 +220,49 @@ function BPMQuery(props) {
 
 function BPMPage() {
   const [bpms, setObj] = React.useState([]);
+  const [loader, setLoader] = React.useState(true);
+
+  const override = css`
+    position: fixed;
+    top: 35%;
+    left: 50%;
+      `;
 
   React.useEffect(() => {
-    fetch(conf.BACKEND_SERVER + "/getall")
-      .then((response) => {
-        response.json().then((res) => {
-          console.log(res);
-          res.data.forEach((element) => {
-            setObj((prev) => [...prev, element]);
-            // console.log(element);
-          });
-        });
-      })
-      .catch((err) => console.log(err));
+    fetch(conf.BACKEND_SERVER + "/getall").then((response) => {
+      response
+        .json()
+        .then((res) => {
+          try {
+            res.data.forEach((element) => setObj((prev) => [...prev, element]));
+            setLoader(false);
+          } catch (e) {
+            console.log(e);
+          }
+          // console.log(element);
+        })
+        .catch((err) => console.log(err));
+    });
   }, []);
 
   return (
-    <table class="container">
-      {bpms.map((elem) => {
-        return <BPMQuery key={elem.name} bpm={elem}></BPMQuery>;
-      })}
-    </table>
+    <div>
+      <table className="container">
+        <tbody>
+          {bpms.map((elem) => {
+            return <BPMQuery key={elem.name} bpm={elem}></BPMQuery>;
+          })}
+        </tbody>
+      </table>
+      <FadeLoader
+        css={override}
+        loading={loader}
+        height={45}
+        width={15}
+        margin={25}
+        color="#88adbd"
+      ></FadeLoader>
+    </div>
   );
 }
 
