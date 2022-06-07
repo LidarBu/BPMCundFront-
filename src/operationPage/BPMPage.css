@@ -55,9 +55,7 @@
   /* animation: green_pulse 3s linear 1s infinite; */
 }
 
-
 .inline {
-  
   color: white;
   display: inline;
   margin: 5px;
@@ -130,22 +128,27 @@
   font-weight: 300;
 }
 
-div .container{
-padding-top: 15px;
-
+div .container {
+  padding-top: 15px;
 }
 
-.bpm-div{ 
+.bpm-div {
   margin: 2px;
   border-radius: 2px;
   border: #a8a5a5;
   box-shadow: 0 1 1 rgba(241, 241, 241, 0);
-
 }
 
-
-.spinner{
+.spinner {
   background-color: rgb(9, 133, 243);
+}
+
+.filter{
+  
+  margin: 5px;
+  margin-top: 15px  ;
+  color: rgb(221, 221, 221);
+  font-weight: bold;
 
 
 

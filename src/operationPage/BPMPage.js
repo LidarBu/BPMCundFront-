@@ -218,38 +218,66 @@ function BPMQuery(props) {
   );
 }
 
+function filter(word, bpms, descriptor, setFiltered) {
+  setFiltered([]);
+  bpms.forEach((element) => {
+    // if (element[descriptor].includes(word))
+    if (
+      element["name"].includes(word) ||
+      element["port"].toString().includes(word) ||
+      element["description"].includes(word)
+    )
+      setFiltered((prev) => [...prev, element]);
+  });
+}
+
 function BPMPage() {
   const [bpms, setObj] = React.useState([]);
+  const [filteredBpms, setFiltered] = React.useState([]);
   const [loader, setLoader] = React.useState(true);
 
   const override = css`
     position: fixed;
     top: 35%;
     left: 50%;
-      `;
+  `;
 
   React.useEffect(() => {
-    fetch(conf.BACKEND_SERVER + "/getall").then((response) => {
-      response
-        .json()
-        .then((res) => {
-          try {
-            res.data.forEach((element) => setObj((prev) => [...prev, element]));
-            setLoader(false);
-          } catch (e) {
-            console.log(e);
-          }
-          // console.log(element);
-        })
-        .catch((err) => console.log(err));
-    });
+    fetch(conf.BACKEND_SERVER + "/getall")
+      .then((response) => {
+        response
+          .json()
+          .then((res) => {
+            try {
+              res.data.forEach((element) => {
+                setObj((prev) => [...prev, element]);
+                setFiltered((prev) => [...prev, element]);
+              });
+              setLoader(false);
+            } catch (e) {
+              console.log(e);
+            }
+            // console.log(element);
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log);
   }, []);
 
   return (
     <div>
+      <div className="filter">
+        Filter:{" "}
+        <input
+          onChange={(input) => {
+            filter(input.target.value, bpms, "description", setFiltered);
+            console.log(filteredBpms);
+          }}
+        />
+      </div>
       <table className="container">
         <tbody>
-          {bpms.map((elem) => {
+          {filteredBpms.map((elem) => {
             return <BPMQuery key={elem.name} bpm={elem}></BPMQuery>;
           })}
         </tbody>

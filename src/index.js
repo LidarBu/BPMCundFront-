@@ -11,11 +11,11 @@ import BPMPage from "./operationPage/BPMPage";
 import logo from "./Assests/logo.jpg";
 import "./Fonts/Lato/Lato-Regular.ttf";
 
-const NavBar = () => {
+const NavBar = () => { //TODO:delete the "" from the logo
   return (
     <>
       <div className="topnav">
-        <img className="logo" src={logo} alt="" width="70" height="81" />
+        <img className="logo" src={logo} alt="" width="70" height="81" /> 
         <h2>Pais BPM Administrator</h2>
       </div>
     </>
